@@ -69,7 +69,6 @@ const ECommerce: React.FC = (props) => {
     <DefaultLayout>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         {dloading ? <Loader/> : (
-        <Link to="/devices" style={{ textDecoration: 'none' }}>
           <CardDataStats title="Total Devices" total={deviceC} rate="0.43%" levelUp>            
             <svg 
                 className="fill-primary dark:fill-white"
@@ -87,10 +86,8 @@ const ECommerce: React.FC = (props) => {
                   <path d="M17.5,14.167c0,0.276,0.224,0.5,0.5,0.5s0.5-0.224,0.5-0.5v-1.042c0-0.276-0.224-0.5-0.5-0.5h-5.5V12  c0-0.276-0.224-0.5-0.5-0.5s-0.5,0.224-0.5,0.5v0.625H6c-0.276,0-0.5,0.224-0.5,0.5v1.042c0,0.276,0.224,0.5,0.5,0.5  s0.5-0.224,0.5-0.5v-0.542H12h5.5V14.167z"/>
               </svg>
           </CardDataStats>
-           </Link>
           )} 
          {bloading ? <Loader/> : (
-        <Link to="/branches" style={{ textDecoration: 'none' }}>
           <CardDataStats title="Total Branches" total={branchC}  levelUp rate="43%">
               
                         <svg 
@@ -108,7 +105,6 @@ const ECommerce: React.FC = (props) => {
               </svg>
             
           </CardDataStats>
-        </Link>
          )}
 
       {floading ? <Loader/> : (
@@ -179,7 +175,7 @@ const ECommerce: React.FC = (props) => {
 
       </div>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <LineChart />
+        {/* <LineChart /> */}
         {/* <ChartOne />
         <ChartTwo />
         <ChartThree />
@@ -187,7 +183,7 @@ const ECommerce: React.FC = (props) => {
         <div className="col-span-12 xl:col-span-8">
           {/* <TableOne /> */}
         </div>
-        <ChatCard />
+        {/* <ChatCard /> */}
       </div>
     </DefaultLayout>
   );
