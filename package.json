@@ -14,7 +14,7 @@
     "url": "https://tailadmin.com"
   },
   "dependencies": {
-    "apexcharts": "^3.41.0",
+    "apexcharts": "^3.51.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
     "chartjs-adapter-date-fns": "^3.0.0",

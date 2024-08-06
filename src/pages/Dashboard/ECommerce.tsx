@@ -12,7 +12,8 @@ import Loader from '../../common/Loader';
 
 import DefaultLayout from '../../layout/DefaultLayout';
 import PropTypes from 'prop-types';
-import { getTotalDevicesInACompany,getTotalBranches,getTotalFaultyDevices,getTotalOfflineDevices} from "../../services/devices";
+import { getTotalDevicesInACompany,getTotalBranches,getTotalFaultyDevices,getTotalOfflineDevices,getDeviceData} from "../../services/devices";
+import LineGraph from '../../components/Charts/LineGraph';
 
 const ECommerce: React.FC = (props) => {
   
@@ -21,6 +22,7 @@ const ECommerce: React.FC = (props) => {
   const [faultC,setFaultC] = useState<number>(0);
   const [offlineC,setOfflineC] = useState<number>(0);
   const sToken = localStorage.getItem('Token');
+  console.log()
 
   const [dloading, setDloading] = useState(true); 
   const [bloading, setBloading] = useState(true); 
@@ -49,8 +51,10 @@ const ECommerce: React.FC = (props) => {
         const oC = await getTotalOfflineDevices(token);
         setOfflineC(oC.length);
         setOloading(false);
-
-    
+        
+        
+        const b=await getDeviceData(token);
+        console.log(b);
 
 
  
@@ -175,6 +179,7 @@ const ECommerce: React.FC = (props) => {
 
       </div>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+        {<LineGraph />}
         {/* <LineChart /> */}
         {/* <ChartOne />
         <ChartTwo />
