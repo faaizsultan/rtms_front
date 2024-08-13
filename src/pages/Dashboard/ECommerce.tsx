@@ -13,7 +13,21 @@ import Loader from '../../common/Loader';
 import DefaultLayout from '../../layout/DefaultLayout';
 import PropTypes from 'prop-types';
 import { getTotalDevicesInACompany,getTotalBranches,getTotalFaultyDevices,getTotalOfflineDevices,getDeviceData} from "../../services/devices";
-import LineGraph from '../../components/Charts/LineGraph';
+import GoogleMaps from '../../components/Maps/GoogleMaps';
+
+interface SensorData {
+  lat: number;
+  long: number;
+  equipment_temp: number;
+}
+
+interface MobileDeviceDataItem {
+  id: number;
+  time: string;
+  sensorData: SensorData;
+  spot_id: string;
+}
+
 
 const ECommerce: React.FC = (props) => {
   
@@ -23,6 +37,7 @@ const ECommerce: React.FC = (props) => {
   const [offlineC,setOfflineC] = useState<number>(0);
   const sToken = localStorage.getItem('Token');
   console.log()
+  const [mobileData,setMobileData] = useState<MobileDeviceDataItem[] | null>(null);
 
   const [dloading, setDloading] = useState(true); 
   const [bloading, setBloading] = useState(true); 
@@ -53,8 +68,9 @@ const ECommerce: React.FC = (props) => {
         setOloading(false);
         
         
-        const b=await getDeviceData(token,'o3FDZo6axE');
-        console.log(b);
+        const mbResult=await getDeviceData(token,'o3FDZo6axE');
+        console.log(mbResult);
+        setMobileData(mbResult);
 
 
  
@@ -172,14 +188,25 @@ const ECommerce: React.FC = (props) => {
            </g>
            </g>
           </svg>
-
+          
         </CardDataStats>
       )}
 
-
       </div>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        {/* {<LineGraph />} */}
+          {/* <APIProvider apiKey={import.meta.env.VITE_MAPS_API_KEY}>
+            <Map
+              zoom={12} center={{lat: 33.6805733, lng: 73.06021}}
+              style={{width: '100vw', height: '100vh'}}
+              
+              defaultZoom={3}
+              gestureHandling={'greedy'}
+              disableDefaultUI={true}
+            >
+            <Marker position={{lat: 33.6805733, lng: 73.06021}} />
+            </Map>
+      </APIProvider> */}
+      <GoogleMaps api_key={import.meta.env.VITE_MAPS_API_KEY} data={mobileData} />
         {/* <LineChart /> */}
         {/* <ChartOne />
         <ChartTwo />
