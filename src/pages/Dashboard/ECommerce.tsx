@@ -68,12 +68,10 @@ const ECommerce: React.FC = (props) => {
         setOloading(false);
         
         
+
         const mbResult=await getDeviceData(token,'o3FDZo6axE');
         console.log(mbResult);
-        setMobileData(mbResult);
-
-
- 
+        setMobileData(mbResult); 
 
       } catch (err) {
         console.log("Failed To Dashboard Counts")
@@ -206,7 +204,23 @@ const ECommerce: React.FC = (props) => {
             <Marker position={{lat: 33.6805733, lng: 73.06021}} />
             </Map>
       </APIProvider> */}
-      <GoogleMaps api_key={import.meta.env.VITE_MAPS_API_KEY} data={mobileData} />
+          {
+           mobileData ? ( 
+              mobileData.success ? ( <GoogleMaps api_key={import.meta.env.VITE_MAPS_API_KEY} data={mobileData.data} />  ) : (<h1>{mobileData.message}</h1>)
+
+            ) : 
+           ( <Loader/>)
+          
+          }
+
+        
+ 
+ 
+ 
+ 
+ 
+ 
+      
         {/* <LineChart /> */}
         {/* <ChartOne />
         <ChartTwo />

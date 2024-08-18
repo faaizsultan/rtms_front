@@ -25,31 +25,31 @@ const GoogleMaps : React.FC<GoogleMapsProps> = ({api_key ,data}) => {
         
        
 
-        {data ? (
-          <APIProvider apiKey={api_key}>
-              <Map
-               zoom={12} defaultCenter={{lat : data[0].sensorData.lat , lng: data[0].sensorData.long}}
-               style={{width: '100vw', height: '100vh'}}
-               
-               defaultZoom={3}
-               gestureHandling={'auto'}
-               disableDefaultUI={false}
-             >
+        { data ? (
+            <APIProvider apiKey={api_key}>
+                <Map
+                zoom={12} defaultCenter={{lat : data[0].sensorData.lat , lng: data[0].sensorData.long}}
+                style={{width: '100vw', height: '100vh'}}
                 
-                 { 
-                    data.map( (item) => (
-                      <HoverableMarker  
-                        key={item.id}
-                        position={{lat: item.sensorData.lat, lng: item.sensorData.long}}
-                        equipment_temp={item.sensorData.equipment_temp}
-                        time={item.time}
-                      />
-                      ))
-                  }
-              </Map>
-            </APIProvider>
-            ) : (<Loader/>)
-            }
+                defaultZoom={3}
+                gestureHandling={'auto'}
+                disableDefaultUI={false}
+              >
+                  
+                  { 
+                      data.map( (item) => (
+                        <HoverableMarker  
+                          key={item.id}
+                          position={{lat: item.sensorData.lat, lng: item.sensorData.long}}
+                          equipment_temp={item.sensorData.equipment_temp}
+                          time={item.time}
+                        />
+                        ))
+                    }
+                </Map>
+              </APIProvider>
+              ) : (<Loader/>)
+          }
             
            
      
