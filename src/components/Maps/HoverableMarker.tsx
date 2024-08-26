@@ -33,10 +33,19 @@ const HoverableMarker: React.FC<HoverableMarkerProps> = ({ position,equipment_te
   const handleMouseOut = () => {
     setIsHovered(false);
   };
+
+  const customIcon = {
+    url: '/red_dot.svg',
+    scaledSize: new google.maps.Size(15, 15),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(25, 50),
+  };
+
   return (
     <>
       <Marker 
         position={position} 
+        icon={customIcon} 
         onMouseOver={handleMouseOver}
         // onMouseOut={handleMouseOut}
       />
